@@ -1,5 +1,5 @@
 <script>
-  import { getContext } from 'svelte';
+  import { getContext, onDestroy } from 'svelte';
 
   import PIXI, { PIXI_CONTEXT, DragManager } from '../../lib/pixi';
 
@@ -159,7 +159,13 @@
     }
   }
 
-  app.ticker.add(() => {
+  const update = () => {
     tick();
+  };
+
+  app.ticker.add(update);
+
+  onDestroy(() => {
+    app.ticker.remove(update);
   });
 </script>

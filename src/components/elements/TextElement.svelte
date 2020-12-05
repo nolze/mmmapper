@@ -1,5 +1,5 @@
 <script>
-  import { getContext } from 'svelte';
+  import { getContext, onDestroy } from 'svelte';
 
   import PIXI, {
     PIXI_CONTEXT,
@@ -53,7 +53,7 @@
     dragManager.makeDraggable(container.group, container.sprite);
     app.stage.addChild(container.group);
 
-    app.ticker.add(() => {
+    const update = () => {
       pixiText.text = text;
       pixiText.alpha = style.opacity;
       pixiText.setTransform(
@@ -63,6 +63,12 @@
         style.scale,
       );
       container.update();
+    };
+
+    app.ticker.add(update);
+
+    onDestroy(() => {
+      app.ticker.remove(update);
     });
   }
 

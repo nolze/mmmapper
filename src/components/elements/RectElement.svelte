@@ -1,5 +1,5 @@
 <script>
-  import { getContext } from 'svelte';
+  import { getContext, onDestroy } from 'svelte';
 
   import PIXI, {
     PIXI_CONTEXT,
@@ -81,7 +81,7 @@
 
     let r, g, b;
 
-    app.ticker.add(() => {
+    const update = () => {
       container.update();
       transform();
       if (brightness) {
@@ -90,6 +90,12 @@
         b = Math.ceil((fill & 255) * brightness);
         rect.tint = ((1 << 24) + (r << 16) + (g << 8) + b) & 0xffffff;
       }
+    };
+
+    app.ticker.add(update);
+
+    onDestroy(() => {
+      app.ticker.remove(update);
     });
   }
 

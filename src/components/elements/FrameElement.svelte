@@ -1,5 +1,5 @@
 <script>
-  import { getContext } from 'svelte';
+  import { getContext, onDestroy } from 'svelte';
 
   import PIXI, {
     PIXI_CONTEXT,
@@ -60,9 +60,15 @@
       );
     };
 
-    app.ticker.add(() => {
+    const update = () => {
       container.update();
       transform();
+    };
+
+    app.ticker.add(update);
+
+    onDestroy(() => {
+      app.ticker.remove(update);
     });
   }
 
