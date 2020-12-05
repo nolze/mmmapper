@@ -44,12 +44,13 @@
       resolution: window.devicePixelRatio || 1,
     });
 
-    // const container = new PIXI.Container();
-    // app.stage.addChild(container);
+    app.ticker.autoStart = false;
+    app.ticker = null; // NOTE: Init in components/Sketch.svelte
+    app.stage = null; // NOTE: Init in components/Sketch.svelte
 
-    // return () => {
-    //   app.destroy();
-    // };
+    return () => {
+      app.destroy();
+    };
   });
 
   onDestroy(() => {

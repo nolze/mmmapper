@@ -1,7 +1,7 @@
 <script>
   import ProjectorWindow from './ProjectorWindow.svelte';
   import Screen from './components/Screen.svelte';
-  import Sketch from './Sketch.svelte';
+  import SketchWrapper from './components/SketchWrapper.svelte';
   import Stage from './components/Stage.svelte';
   import TextAliveControls from './components/TextAliveControls.svelte';
   import store, { textaliveStore } from './store';
@@ -250,9 +250,11 @@
           width="600"
           height="400">
           {#if activeSong.sketch}
-            <svelte:component this={activeSong.sketch} />
-          {:else}
-            <Sketch />
+            {#key activeSong.sketch}
+              <SketchWrapper>
+                <svelte:component this={activeSong.sketch} />
+              </SketchWrapper>
+            {/key}
           {/if}
         </Screen>
       </div>
