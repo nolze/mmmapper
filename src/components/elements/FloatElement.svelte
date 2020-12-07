@@ -1,16 +1,20 @@
 <script>
   import { getContext, onDestroy } from 'svelte';
-
-  import PIXI, { PIXI_CONTEXT, DragManager } from '../../lib/pixi';
-
   import randomcolor from 'randomcolor';
 
-  let shapeStyle = 'circle';
+  import PIXI, {
+    PIXI_CONTEXT,
+    DragManager,
+    WarpContainer,
+  } from '../../lib/pixi';
 
+  /* Args */
+  let shapeStyle = 'circle';
   export { shapeStyle as shape };
 
   export let x = 0,
     y = 0,
+    offset = [],
     width,
     height,
     n = 20,
@@ -21,8 +25,6 @@
     delta = 0.2,
     direction = 'up';
 
-  // console.log(fill);
-
   const directionMap = {
     up: { x: 0, y: -1 },
     down: { x: 0, y: 1 },
@@ -30,15 +32,21 @@
     left: { x: -1, y: 0 },
   };
 
-  const { getApp } = getContext(PIXI_CONTEXT);
+  const { getApp, pixiStore } = getContext(PIXI_CONTEXT);
   const app = getApp();
 
-  const drag = new DragManager();
-  const container = new PIXI.Container();
+  const dragManager = new DragManager();
+
+  let container,
+    showHelper = false;
   export const pixiObj = container;
 
-  let bg,
-    shapes = [];
+  pixiStore.editMode.subscribe((value) => {
+    showHelper = value;
+    !!container && container.showHelper(value);
+  });
+
+  let shapes = [];
 
   // const presetPalette = [0xff0000, 0x00ff00, 0x0000ff];
   const presetPalette = randomcolor({
@@ -76,12 +84,9 @@
   }
 
   function setup() {
-    container.interactive = true;
-
-    bg = new PIXI.Graphics();
+    let bg = new PIXI.Graphics();
     bg.lineStyle(0, 0xcccccc);
     bg.beginFill(0xffffff, 0.0001).drawRect(0, 0, width, height).endFill();
-    container.addChild(bg);
 
     for (let i = 0; i < n; i++) {
       const shape = new PIXI.Graphics();
@@ -94,7 +99,6 @@
       if (shapeStyle === 'line') {
         shape.beginFill(shapeFill).drawRect(0, 0, 2, 50).endFill();
       } else if (shapeStyle === 'triangle') {
-        // console.log(shapeStyle);
         shape
           .beginFill(shapeFill)
           .moveTo(0, 0)
@@ -110,19 +114,19 @@
       shape.initialX = shapeX;
       shape.initialY = shapeY;
       shapes.push(shape);
-      container.addChild(shape);
+      bg.addChild(shape);
     }
 
+    container = new WarpContainer(bg, app.renderer, app.screen, showHelper);
     container.x = x;
     container.y = y;
+    container.setOffset(...offset);
 
-    drag.makeDraggable(container);
-    app.stage.addChild(container);
+    dragManager.makeDraggable(container.group, container.sprite);
+    app.stage.addChild(container.group);
   }
 
   setup();
-
-  // direction = 'zoom';
 
   let zoom = 1;
   let size = 50;
@@ -160,6 +164,7 @@
   }
 
   const update = () => {
+    container.update();
     tick();
   };
 
