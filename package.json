@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "svite",
-    "build": "svite build"
+    "build": "svite build",
+    "build:gh-pages": "npm run build -- --base ./",
+    "publish:gh-pages": "gh-pages -d dist --dotfiles -f"
   },
   "dependencies": {
     "@mdi/js": "^5.8.55",
