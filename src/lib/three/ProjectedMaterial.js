@@ -1,8 +1,4 @@
-/*
-  Derived from https://github.com/marcofugaro/codrops-texture-projection and
-  https://github.com/marcofugaro/three-projected-material (MIT)
-*/
-
+/*! Derived from https://github.com/marcofugaro/codrops-texture-projection and https://github.com/marcofugaro/three-projected-material (MIT) */
 
 import * as THREE from 'three';
 
