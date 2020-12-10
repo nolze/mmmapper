@@ -5,7 +5,7 @@
     "dev": "svite",
     "build": "svite build",
     "build:gh-pages": "npm run build -- --base ./",
-    "publish:gh-pages": "gh-pages -d dist --dotfiles -f"
+    "publish:gh-pages": "npm run build:gh-pages && gh-pages -d dist --dotfiles -f"
   },
   "dependencies": {
     "@mdi/js": "^5.8.55",
@@ -19,6 +19,7 @@
     "three": "^0.111.0"
   },
   "devDependencies": {
+    "gh-pages": "^3.1.0",
     "postcss": "^8.1.4",
     "postcss-import": "^12.0.1",
     "postcss-load-config": "^3.0.0",
