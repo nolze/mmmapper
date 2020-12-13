@@ -1,0 +1,37 @@
+<script>
+  import { Canvas, Screen, SketchWrapper } from '@mmmapper/components';
+
+  let canvas;
+</script>
+
+# SketchWrapper
+
+<Canvas
+  bind:canvas={canvas}
+  width="600"
+  height="400"
+  class="border shadow mx-auto"
+>
+  <Screen canvas={canvas} width="600" height="400" editMode={true}>
+    <SketchWrapper></SketchWrapper>
+  </Screen>
+</Canvas>
+
+```
+<script>
+  import { Canvas, Screen, SketchWrapper } from '@mmmapper/components';
+
+  let canvas;
+</script>
+
+<Canvas
+  bind:canvas={canvas}
+  width="600"
+  height="400"
+  class="border shadow mx-auto"
+>
+  <Screen canvas={canvas} width="600" height="400" editMode={true}>
+    <SketchWrapper></SketchWrapper>
+  </Screen>
+</Canvas>
+```

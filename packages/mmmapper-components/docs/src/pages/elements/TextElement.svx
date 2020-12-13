@@ -1,0 +1,116 @@
+<script>
+  import { Canvas, Screen, SketchWrapper } from '@mmmapper/components';
+  import { TextElement } from '@mmmapper/components';
+
+  let canvas;
+
+  let texts = [
+    {
+      value: 'hello hello',
+      x: 250,
+      y: 100,
+      width: 200,
+      height: 50,
+      fontSize: 20,
+      fill: 0x000000,
+      style: { opacity: 1, scale: 1 },
+    },
+    {
+      value: 'あ',
+      x: 250,
+      y: 200,
+      width: 100,
+      height: 100,
+      fontSize: 60,
+      fill: 0xffffff,
+      style: { opacity: 1, scale: 1.5 },
+      textStyle: { lineJoin: 'bevel', strokeThickness: 2, fill: 0xffffff },
+    },
+  ];
+</script>
+
+# TextElement
+
+A text element.
+
+<Canvas
+  bind:canvas={canvas}
+  width="600"
+  height="400"
+  class="border shadow mx-auto"
+>
+  <Screen canvas={canvas} width="600" height="400" editMode={true}>
+    <SketchWrapper>
+      {#each texts as text}
+        <TextElement
+          text={text.value}
+          style={text.style}
+          x={text.x}
+          y={text.y}
+          width={text.width}
+          height={text.height}
+          fontSize={text.fontSize}
+          fill={text.fill}
+          textStyle={text.textStyle} />
+      {/each}
+    </SketchWrapper>
+  </Screen>
+</Canvas>
+
+```
+<script>
+<script>
+  import { Canvas, Screen, SketchWrapper } from '@mmmapper/components';
+  import { TextElement } from '@mmmapper/components';
+
+  let canvas;
+
+  let texts = [
+    {
+      value: 'hello hello',
+      x: 250,
+      y: 100,
+      width: 200,
+      height: 50,
+      fontSize: 20,
+      fill: 0x000000,
+      style: { opacity: 1, scale: 1 },
+    },
+    {
+      value: 'あ',
+      x: 250,
+      y: 200,
+      width: 100,
+      height: 100,
+      fontSize: 60,
+      fill: 0xffffff,
+      style: { opacity: 1, scale: 1.5 },
+      textStyle: { lineJoin: 'bevel', strokeThickness: 2, fill: 0xffffff },
+    },
+  ];
+</script>
+
+<Canvas
+  bind:canvas={canvas}
+  width="600"
+  height="400"
+  class="border shadow mx-auto"
+>
+  <Screen canvas={canvas} width="600" height="400" editMode={true}>
+    <SketchWrapper>
+      {#each texts as text}
+        <TextElement
+          text={text.value}
+          style={text.style}
+          x={text.x}
+          y={text.y}
+          width={text.width}
+          height={text.height}
+          fontSize={text.fontSize}
+          fill={text.fill}
+          textStyle={text.textStyle} />
+      {/each}
+    </SketchWrapper>
+  </Screen>
+</Canvas>
+```
