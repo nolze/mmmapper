@@ -14,10 +14,16 @@
 </script>
 
 <script>
-  import TextElement from '../../components/elements/TextElement.svelte';
-  import RectElement from '../../components/elements/RectElement.svelte';
-  import FrameElement from '../../components/elements/FrameElement.svelte';
-  import FloatElement from '../../components/elements/FloatElement.svelte';
+  import {
+    TextElement,
+    RectElement,
+    FrameElement,
+    FloatElement,
+  } from '@mmmapper/components';
+  // import TextElement from '../../components/elements/TextElement.svelte';
+  // import RectElement from '../../components/elements/RectElement.svelte';
+  // import FrameElement from '../../components/elements/FrameElement.svelte';
+  // import FloatElement from '../../components/elements/FloatElement.svelte';
   import store from '../../store';
 
   import anime from 'animejs/lib/anime.es.js';

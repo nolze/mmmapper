@@ -22,7 +22,7 @@
   } from '../stageSets';
 
   /* Args */
-  export let screen;
+  export let canvas;
   export let stageSetup;
 
   /* DOM elements */
@@ -372,7 +372,6 @@
     app.scene.add(
       (() => {
         /* Projected texture */
-        const canvas = screen.getCanvasRef();
         texture = new THREE.CanvasTexture(canvas);
         texture.minFilter = THREE.LinearFilter;
         // texture.wrapS = THREE.RepeatWrapping;

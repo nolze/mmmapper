@@ -13,10 +13,15 @@
 </script>
 
 <script>
-  import TextElement from '../../components/elements/TextElement.svelte';
-  import RectElement from '../../components/elements/RectElement.svelte';
-  import StripeElement from '../../components/elements/StripeElement.svelte';
-  import FloatElement from '../../components/elements/FloatElement.svelte';
+  import {
+    TextElement,
+    StripeElement,
+    FloatElement,
+  } from '@mmmapper/components';
+  // import TextElement from '../../components/elements/TextElement.svelte';
+  // import RectElement from '../../components/elements/RectElement.svelte';
+  // import StripeElement from '../../components/elements/StripeElement.svelte';
+  // import FloatElement from '../../components/elements/FloatElement.svelte';
   import store from '../../store';
 
   import anime from 'animejs/lib/anime.es.js';

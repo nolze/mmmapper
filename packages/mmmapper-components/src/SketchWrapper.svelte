@@ -4,23 +4,30 @@
 
   const { getApp, pixiStore } = getContext(PIXI_CONTEXT);
   const app = getApp();
+  let status = 'loaded';
 
-  console.log('SketchWrapper loaded');
+  console.log('SketchWrapper', { status });
+
+  // app.ticker = PIXI.Ticker.shared;
+  // app.ticker.autoStart = false;
+  // app.stage = new PIXI.Container();
+  app.ticker.start();
 
   onMount(() => {
-    console.log('SketchWrapper mounted');
-
-    app.ticker = PIXI.Ticker.shared;
-    app.ticker.autoStart = false;
-    app.stage = new PIXI.Container();
-    app.ticker.start();
+    status = 'mounted';
+    console.log('SketchWrapper', { status });
 
     pixiStore.sketchWrapperDestructor.set(() => {
       app.ticker.stop();
-      app.stage.destroy(); // TODO: Should be app.stage.destroy(true);
-      console.log('SketchWrapper destroyed');
+      // app.stage.destroy(); // TODO: Should be app.stage.destroy(true);
+      status = 'destroyed';
+      console.log('SketchWrapper', { status });
+      // console.log(app.stage);
       return true;
     });
+
+    status = 'initialized';
+    console.log('SketchWrapper', { status });
 
     // TODO: Destroy under SketchWrapper while keeping Screen
     // return () => {
@@ -34,6 +41,6 @@
   });
 </script>
 
-{#if app.stage}
+{#if status === 'initialized'}
   <slot />
 {/if}

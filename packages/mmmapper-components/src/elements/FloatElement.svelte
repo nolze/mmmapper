@@ -32,8 +32,6 @@
     left: { x: -1, y: 0 },
   };
 
-  console.log('FloatElement loaded');
-
   const { getApp, pixiStore } = getContext(PIXI_CONTEXT);
   const app = getApp();
 

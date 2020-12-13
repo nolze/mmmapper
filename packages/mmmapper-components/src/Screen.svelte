@@ -9,10 +9,14 @@
   export let width, height;
   export let editMode = false;
   export let canvas; // DOM element
+  export let status = 'loaded';
+  console.log('Screen', { status });
 
   /* Params */
   let app = null;
-  let mounted = false, initialized = false;
+  let mounted = false,
+    appMounted = false,
+    initialized = false;
 
   export function getCanvasRef() {
     return canvas;
@@ -47,26 +51,33 @@
       resolution: window.devicePixelRatio || 1,
     });
 
-    app.ticker.autoStart = false;
-    app.ticker = null; // NOTE: Init in components/SketchWrapper.svelte
-    app.stage = null; // NOTE: Init in components/SketchWrapper.svelte
+    // app.ticker.autoStart = false;
+    // app.ticker = null; // NOTE: Init in components/SketchWrapper.svelte
+    // app.stage = null; // NOTE: Init in components/SketchWrapper.svelte
+    appMounted = true;
   }
 
-  $: if (mounted && canvas) initialized = true;
+  $: if (mounted && appMounted) {
+    status = 'initialized';
+    console.log('Screen', { status });
+    initialized = true;
+  }
 
   onMount(() => {
     // console.log('Screen mounted');
     mounted = true;
 
     return () => {
-      initialized = false;
-      console.log($destructors);
+      // console.log($destructors);
       $destructors.forEach((destructor) => destructor());
       if ($sketchWrapperDestructor()) {
         // Destroy only if SketchWrapper exists
+        // app.stage.destroy();
         app.destroy();
       }
-      console.log('Screen destroyed');
+      initialized = false;
+      status = 'destroyed';
+      console.log('Screen', { status });
     };
   });
 </script>

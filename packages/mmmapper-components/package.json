@@ -34,7 +34,7 @@
     "deploy:docs": "npm run --prefix ./docs deploy"
   },
   "dependencies": {
-    "@ungap/event-target": "^0.2.2",
+    "@ungap/event-target": "git+https://github.com/nolze/event-target#master",
     "pixi-projection": "^0.3.15",
     "pixi.js": "^5.3.3",
     "randomcolor": "^0.6.2"
