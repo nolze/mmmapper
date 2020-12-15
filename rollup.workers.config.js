@@ -9,7 +9,7 @@ export default [
       sourcemap: true,
       format: 'esm',
       name: 'app',
-      file: 'dist/build/workers/repl.js',
+      file: 'public/build/workers/repl.js',
     },
     plugins: [
       json(),
