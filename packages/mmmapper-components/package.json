@@ -28,7 +28,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "version-package": "npm version -m '[@mmmapper/components] %s'",
+    "version-package": "mkdirp .git && npm version -m '[@mmmapper/components] %s'",
     "prepack": "npm run build",
     "publish-public": "npm publish --access=public",
     "build:docs": "npm run build && npm run --prefix ./docs build",
@@ -46,6 +46,7 @@
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-inject": "^4.0.2",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "mkdirp": "^1.0.4",
     "rollup": "^2.34.2",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-node-polyfills": "^0.2.1",

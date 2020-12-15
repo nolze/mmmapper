@@ -1,5 +1,5 @@
 dependencies:
-  '@ungap/event-target': github.com/nolze/event-target/7cfe7e0ebcd9307a861ac3ba71776d04c56d338b
+  '@ungap/event-target': github.com/nolze/event-target/a7e2186c4e40b7d73b938d71ed5c2a15834004f9
   pixi-projection: 0.3.15
   pixi.js: 5.3.3
   randomcolor: 0.6.2
@@ -9,6 +9,7 @@ devDependencies:
   '@rollup/plugin-commonjs': 17.0.0_rollup@2.34.2
   '@rollup/plugin-inject': 4.0.2_rollup@2.34.2
   '@rollup/plugin-node-resolve': 11.0.0_rollup@2.34.2
+  mkdirp: 1.0.4
   rollup: 2.34.2
   rollup-plugin-livereload: 2.0.0
   rollup-plugin-node-polyfills: 0.2.1
@@ -1757,6 +1758,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  /mkdirp/1.0.4:
+    dev: true
+    engines:
+      node: '>=10'
+    hasBin: true
+    resolution:
+      integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
   /ms/2.1.2:
     dev: true
     resolution:
@@ -2227,11 +2235,11 @@ packages:
     dev: true
     resolution:
       integrity: sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
-  github.com/nolze/event-target/7cfe7e0ebcd9307a861ac3ba71776d04c56d338b:
+  github.com/nolze/event-target/a7e2186c4e40b7d73b938d71ed5c2a15834004f9:
     dev: false
     name: '@ungap/event-target'
     resolution:
-      tarball: 'https://codeload.github.com/nolze/event-target/tar.gz/7cfe7e0ebcd9307a861ac3ba71776d04c56d338b'
+      tarball: 'https://codeload.github.com/nolze/event-target/tar.gz/a7e2186c4e40b7d73b938d71ed5c2a15834004f9'
     version: 0.2.2
 specifiers:
   '@babel/core': ^7.12.9
@@ -2240,6 +2248,7 @@ specifiers:
   '@rollup/plugin-inject': ^4.0.2
   '@rollup/plugin-node-resolve': ^11.0.0
   '@ungap/event-target': 'git+https://github.com/nolze/event-target#master'
+  mkdirp: ^1.0.4
   pixi-projection: ^0.3.15
   pixi.js: ^5.3.3
   randomcolor: ^0.6.2
