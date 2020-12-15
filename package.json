@@ -6,7 +6,7 @@
     "dev:workers": "rollup -c rollup.workers.config.js -w",
     "build": "svite build && npm run build:workers",
     "build:workers": "rollup -c rollup.workers.config.js",
-    "build:gh-pages": "npm run build -- --base ./",
+    "build:gh-pages": "svite build --base ./ && npm run build:workers",
     "publish:gh-pages": "npm run build:gh-pages && gh-pages -d dist --dotfiles -f"
   },
   "dependencies": {
