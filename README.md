@@ -28,7 +28,7 @@
 
 ## Related
 
-- [@mmmapper/components](https://github.com/mmmapper/mmmapper-components): A libary of components and elements for mmmapper. (WIP)
+- [@mmmapper/components](https://mmmapper.github.io/mmmapper-components/): A libary of components and elements for mmmapper. (WIP)
 
 ## Development
 
@@ -47,7 +47,7 @@ npm run build -- --base <basepath>
 
 ## Todo
 
-* [ ] Free screen edit
+* [x] Free screen edit
 * [ ] Free stage edit/import
 * [ ] I18n
 * [ ] Any songs
