@@ -2,7 +2,7 @@ dependencies:
   '@ungap/event-target': github.com/nolze/event-target/a7e2186c4e40b7d73b938d71ed5c2a15834004f9
   pixi-projection: 0.3.15
   pixi.js: 5.3.3
-  randomcolor: 0.6.2
+  randomcolor: github.com/davidmerfield/randomColor/4e2f0eaf025aa5c519a8e316f574468fd6bd9dbd
 devDependencies:
   '@babel/core': 7.12.10
   '@babel/preset-env': 7.12.10_@babel+core@7.12.10
@@ -1893,10 +1893,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==
-  /randomcolor/0.6.2:
-    dev: false
-    resolution:
-      integrity: sha512-Mn6TbyYpFgwFuQ8KJKqf3bqqY9O1y37/0jgSK/61PUxV4QfIMv0+K2ioq8DfOjkBslcjwSzRfIDEXfzA9aCx7A==
   /readdirp/3.5.0:
     dependencies:
       picomatch: 2.2.2
@@ -2235,6 +2231,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
+  github.com/davidmerfield/randomColor/4e2f0eaf025aa5c519a8e316f574468fd6bd9dbd:
+    dev: false
+    name: randomcolor
+    resolution:
+      tarball: 'https://codeload.github.com/davidmerfield/randomColor/tar.gz/4e2f0eaf025aa5c519a8e316f574468fd6bd9dbd'
+    version: 0.6.2
   github.com/nolze/event-target/a7e2186c4e40b7d73b938d71ed5c2a15834004f9:
     dev: false
     name: '@ungap/event-target'
@@ -2251,7 +2253,7 @@ specifiers:
   mkdirp: ^1.0.4
   pixi-projection: ^0.3.15
   pixi.js: ^5.3.3
-  randomcolor: ^0.6.2
+  randomcolor: 'git+https://github.com/davidmerfield/randomColor#4e2f0eaf025aa5c519a8e316f574468fd6bd9dbd'
   rollup: ^2.34.2
   rollup-plugin-livereload: ^2.0.0
   rollup-plugin-node-polyfills: ^0.2.1

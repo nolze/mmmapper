@@ -38,7 +38,7 @@
     "@ungap/event-target": "git+https://github.com/nolze/event-target#master",
     "pixi-projection": "^0.3.15",
     "pixi.js": "^5.3.3",
-    "randomcolor": "^0.6.2"
+    "randomcolor": "git+https://github.com/davidmerfield/randomColor#4e2f0eaf025aa5c519a8e316f574468fd6bd9dbd"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
