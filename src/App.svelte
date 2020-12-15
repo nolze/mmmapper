@@ -1,9 +1,10 @@
 <script>
   import Help from './Help.svelte';
   import ProjectorWindow from './ProjectorWindow.svelte';
-  import Screen from './components/Screen.svelte';
-  import SketchWrapper from './components/SketchWrapper.svelte';
+  import { Canvas, Screen, SketchWrapper } from '@mmmapper/components';
   import Stage from './components/Stage.svelte';
+  import Output from './repl/Output.svelte';
+  import Input from './repl/Input.svelte';
   import TextAliveControls from './components/TextAliveControls.svelte';
   import store, { textaliveStore } from './store';
 
@@ -26,7 +27,7 @@
   } from '@mdi/js';
 
   /* DOM elements */
-  let screen;
+  let canvas = null;
 
   /* Params */
   let showScreen = false;
@@ -37,8 +38,17 @@
     resolution: false,
     help: false,
   };
+  let enableCustomScreenEdit = false,
+    customScreenEdit = false;
 
   const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('screenedit') === 'custom') {
+    enableCustomScreenEdit = true;
+    customScreenEdit = true; // Show pane at open
+    showScreen = true;
+  }
 
   textaliveStore.manager.subscribe((manager) => {
     if (showPlaylist && !textaliveInitialized) {
@@ -73,6 +83,62 @@
   const songs = defaultSongs;
 
   let activeSong = songs[0];
+
+  let sketch = `<script>
+    import { Screen, SketchWrapper } from '@mmmapper/components';
+    import { RectElement, TextElement } from '@mmmapper/components';
+
+    export let canvas, editMode, store;
+
+    let chars = ['', '', '', '', '', ''];
+    let charsIndex = 0;
+    let styles = [{}, {}, {}, {}, {}, {}];
+
+    let phraseEnd = false;
+
+    store.char.subscribe((newChar) => {
+      if (!newChar) return;
+      if (phraseEnd) {
+        chars = ['', '', '', '', '', ''];
+        charsIndex = 0;
+        phraseEnd = false;
+      }
+      chars[charsIndex] = newChar.text;
+      styles[charsIndex] = {
+        opacity: 1,
+        scale: 1,
+      };
+      charsIndex = (charsIndex + 1) % chars.length;
+      if (newChar.parent.parent.lastChar === newChar) {
+        phraseEnd = true;
+      }
+    });
+  <\/script>
+
+  <Screen {canvas} editMode={$editMode} width="600" height="400">
+    <SketchWrapper>
+      <RectElement
+        x={250}
+        y={150}
+        width={100}
+        height={100}
+        fill={0x60c0b7}
+        brightness={1} />
+      {#each chars as char, i}
+        <TextElement
+          text={char}
+          style={styles[i]}
+          x={150 + i * 50}
+          y={180}
+          width={50}
+          height={50}
+          fontSize={20}
+          fill={0xffffff}
+          textStyle={{ lineJoin: 'bevel', strokeThickness: 2, fill: 0xffffff }} />
+      {/each}
+    </SketchWrapper>
+  </Screen>
+  `;
 
   const animateWord = (now, unit) => {
     // let latency = 100; // 100;
@@ -114,9 +180,19 @@
       props: {
         self: win,
         head,
-        screen,
+        canvas,
       },
     });
+  }
+
+  function setScreenEditMode(value) {
+    const params = new URLSearchParams(window.location.search);
+    if (value) {
+      params.set('screenedit', value);
+    } else {
+      params.delete('screenedit');
+    }
+    window.location.search = params.toString();
   }
 
   function setResolution(value) {
@@ -173,6 +249,13 @@
   .button.disabled:hover {
     @apply border border-gray-800 rounded bg-gray-900;
   }
+
+  .screen-container:before {
+    display: block;
+    content: '';
+    width: 100%;
+    padding-top: calc((4 / 6) * 100%);
+  }
 </style>
 
 <main>
@@ -211,6 +294,7 @@
               class:mt-1={i > 0}
               on:click={() => {
                 activeSong = song;
+                // enableCustomScreenEdit = false; // TODO: Fix: Causes glitch
               }}>
               {song.title}
             </div>
@@ -226,9 +310,9 @@
       <div class="text-sm text-white">平行移動: Shift + ドラッグ</div>
     </div>
   </div>
-  {#if screen}
+  {#if canvas}
     <div class:hidden={isProjectorMode}>
-      <Stage {screen} stageSetup={activeSong.stageSetup} />
+      <Stage {canvas} stageSetup={activeSong.stageSetup} />
     </div>
     <div
       class="fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center"
@@ -243,21 +327,52 @@
     <div class="mb-3 ml-3">
       <div
         class:hidden={!showScreen}
-        class="border mb-2 absolute max-w-full"
+        class="screen-container mb-2 absolute w-full max-w-full flex"
         style="bottom:100%;">
-        <Screen
-          bind:this={screen}
-          editMode={showScreen}
-          width="600"
-          height="400">
-          {#if activeSong.sketch}
-            {#key activeSong.sketch}
-              <SketchWrapper>
-                <svelte:component this={activeSong.sketch} />
-              </SketchWrapper>
-            {/key}
+        <div
+          class="border"
+          style="position:absolute;top:0;right:0;bottom:0;left:0;">
+          <Canvas
+            bind:canvas
+            width="600"
+            height="400"
+            style="background:rgba(0,0,0,0.8);object-fit:contain;width:100%;height:100%;">
+            {#if enableCustomScreenEdit}
+              <Output {canvas} source={sketch} editMode={showScreen} />
+            {:else if canvas && activeSong.sketch}
+              {#key activeSong.sketch}
+                <Screen {canvas} editMode={showScreen} width="600" height="400">
+                  <SketchWrapper>
+                    <svelte:component this={activeSong.sketch} />
+                  </SketchWrapper>
+                </Screen>
+              {/key}
+            {/if}
+          </Canvas>
+        </div>
+        <div
+          class="flex"
+          style={`position:absolute;left:100%;top:0;bottom:0;padding-right:2rem;${customScreenEdit && 'width:calc(100vw - 100% - 2rem);'}`}>
+          {#if customScreenEdit}
+            <div class="bg-white">
+              <Input bind:code={sketch} />
+            </div>
           {/if}
-        </Screen>
+          <div
+            class="border w-6 bg-gray-300 rounded-r cursor-pointer"
+            on:click={() => {
+              if (params.get('screenedit') !== 'custom') {
+                setScreenEditMode('custom');
+              } else {
+                customScreenEdit = !customScreenEdit;
+              }
+            }}>
+            <span
+              class="my-2"
+              style="writing-mode:vertical-rl;text-orientation:sideways;">コード編集
+              (β)</span>
+          </div>
+        </div>
       </div>
       <div class="menu inline-block flex items-center">
         <div class="hidden md:inline-block">

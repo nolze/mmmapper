@@ -3,7 +3,8 @@
   import { onMount } from 'svelte';
 
   export let self, head;
-  export let screen;
+  let screenCanvas;
+  export { screenCanvas as canvas };
 
   head = head;
 
@@ -22,8 +23,6 @@
 
     const context = canvas.getContext('2d');
 
-    const screenCanvas = screen.getCanvasRef();
-
     function animate() {
       context.drawImage(screenCanvas, 0, 0);
       requestAnimationFrame(animate);
@@ -40,7 +39,7 @@
   id="projector-window"
   style="background:#000;position:fixed;top:0;bottom:0;left:0;right:0;display:flex;">
   <div style="position:absolute;top:0;bottom:0;left:0;right:0;">
-    {#if screen}
+    {#if screenCanvas}
       <canvas
         bind:this={canvas}
         width="600"

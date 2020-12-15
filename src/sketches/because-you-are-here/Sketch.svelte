@@ -13,10 +13,12 @@
 </script>
 
 <script>
-  import TextElement from '../../components/elements/TextElement.svelte';
-  import RectElement from '../../components/elements/RectElement.svelte';
-  import FrameElement from '../../components/elements/FrameElement.svelte';
-  import FloatElement from '../../components/elements/FloatElement.svelte';
+  import {
+    TextElement,
+    RectElement,
+    FloatElement,
+    FrameElement,
+  } from '@mmmapper/components';
   import store from '../../store';
 
   import anime from 'animejs/lib/anime.es.js';
@@ -60,7 +62,16 @@
   let chars = ['', '', '', '', '', '', '', ''];
   let charsIndex = 0;
   let styles = [{}, {}, {}, {}, {}, {}, {}, {}];
-  let charsPos = [[0-30, 0-20], [100-20, 0-50], [200+20, -30], [300+30, 0-20], [0-40, 100], [100-20, 100], [200+20, 100], [300+40, 100]];
+  let charsPos = [
+    [0 - 30, 0 - 20],
+    [100 - 20, 0 - 50],
+    [200 + 20, -30],
+    [300 + 30, 0 - 20],
+    [0 - 40, 100],
+    [100 - 20, 100],
+    [200 + 20, 100],
+    [300 + 40, 100],
+  ];
   charsPos.forEach((v, i) => {
     charsPos[i][0] += 100;
     charsPos[i][1] += 50;
