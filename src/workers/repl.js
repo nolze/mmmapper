@@ -1,6 +1,9 @@
 /*! Derived from https://github.com/pngwn/REPLicant (MIT) */
 
 import * as rollup from 'rollup/dist/es/rollup.browser.js';
+import commonjs from './repl/plugins/commonjs.js';
+
+self.window = self;
 
 const CDN_URL = 'https://unpkg.com'; // 'https://cdn.skypack.dev'; // "https://cdn.jsdelivr.net/npm";
 importScripts(`${CDN_URL}/svelte/compiler.js`);
@@ -80,7 +83,9 @@ self.addEventListener('message', async (event) => {
           if (/.*\.svelte/.test(id)) return svelte.compile(code).js.code;
         },
       },
+      commonjs,
     ],
+    inlineDynamicImports: true,
   });
 
   // a touch longwinded but output contains an array of chunks
