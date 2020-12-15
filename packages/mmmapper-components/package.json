@@ -28,10 +28,11 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
+    "version-package": "npm version -m '[@mmmapper/components] %s'",
     "prepack": "npm run build",
     "publish-public": "npm publish --access=public",
     "build:docs": "npm run build && npm run --prefix ./docs build",
-    "deploy:docs": "npm run --prefix ./docs deploy"
+    "deploy:docs": "npm run build && npm run --prefix ./docs deploy"
   },
   "dependencies": {
     "@ungap/event-target": "git+https://github.com/nolze/event-target#master",
