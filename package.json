@@ -7,7 +7,7 @@
     "build": "svite build && npm run build:workers",
     "build:workers": "rollup -c rollup.workers.config.js",
     "build:gh-pages": "svite build --base ./ && npm run build:workers",
-    "publish:gh-pages": "npm run build:gh-pages && gh-pages -d dist --dotfiles -f"
+    "publish:gh-pages": "npm run build:gh-pages && gh-pages -r 'git@github.com:mmmapper/mmmapper.github.io.git' -b master -d dist --dotfiles -f"
   },
   "dependencies": {
     "@mdi/js": "^5.8.55",

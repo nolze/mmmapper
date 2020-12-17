@@ -18,7 +18,7 @@
 
 ## Demo
 
-<https://nolze.github.io/mmmapper/>
+<https://mmmapper.github.io/>
 
 ## Screenshots
 
