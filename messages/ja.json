@@ -1,0 +1,23 @@
+{
+  "close": "閉じる",
+  "move_horizontally": "平行移動: Shift + ドラッグ",
+  "click_to_return": "クリックで復帰",
+  "menu": {
+    "edit": "編集",
+    "edit_items": {
+      "edit_code": "コード編集 (β)"
+    },
+    "projector_mode": "プロジェクターモード",
+    "settings": "設定",
+    "resolution": "画質",
+    "resolution_items": {
+      "best": "最大"
+    },
+    "language": "言語",
+    "help": "ヘルプ"
+  },
+  "projector_window": {
+    "maximize": "最大化",
+    "fullscreen": "フルスクリーン (マルチディスプレイのみ)"
+  }
+}
