@@ -34,20 +34,6 @@
             と連携して音楽情報に基づく表現を行えるプロジェクションマッピングソフトウェアです。
             「仮想と現実のハイブリッド」がコンセプトで、仮想空間内でだけでなく、プロジェクターを接続すれば実際に投影して楽しむことができます。
           </p>
-          <h2 class="text-lg mb-2">利用について</h2>
-          <p class="mb-2">
-            本アプリケーションは
-            <a
-              target="_blank"
-              class="link"
-              href="https://developer.textalive.jp/">TextAlive および TextAlive
-              App API</a>
-            を利用しています。 利用にあたっては、<a
-              target="_blank"
-              class="link"
-              href="https://github.com/TextAliveJp/textalive-app-api/blob/master/LICENSE.md">TextAlive
-              App API ライセンス</a>に従って利用規約に同意する必要があります。
-          </p>
         {:else}
           <h2 class="text-lg mb-2">About this application</h2>
           <p class="mb-2">
