@@ -42,14 +42,14 @@ npm run dev
 Build:
 
 ```
-npm run build -- --base <basepath>
+svite build --base <basepath> && npm run build:workers
 ```
 
 ## Todo
 
 * [x] Free screen edit
 * [ ] Free stage edit/import
-* [ ] I18n
+* [x] Support i18n
 * [ ] Any songs
 * [ ] Support other projector aspect ratios
 
