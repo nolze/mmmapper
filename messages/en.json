@@ -1,0 +1,23 @@
+{
+  "close": "Close",
+  "move_horizontally": "Move horizontally: Shift + Drag",
+  "click_to_return": "Click to return",
+  "menu": {
+    "edit": "Edit",
+    "edit_items": {
+      "edit_code": "Edit Code (β)"
+    },
+    "projector_mode": "Projector Mode",
+    "settings": "Settings",
+    "resolution": "Resolution",
+    "resolution_items": {
+      "best": "Best"
+    },
+    "language": "Language",
+    "help": "Help"
+  },
+  "projector_window": {
+    "maximize": "Maximize",
+    "fullscreen": "Full screen (multi-display only)"
+  }
+}

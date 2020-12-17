@@ -24,6 +24,7 @@
     "prismjs": "^1.22.0",
     "randomcolor": "^0.6.2",
     "seedrandom": "^3.0.5",
+    "svelte-i18n": "^3.3.0",
     "svelte-spinner": "^2.0.2",
     "textalive-app-api": "^0.2.1",
     "three": "^0.111.0"
