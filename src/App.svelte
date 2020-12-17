@@ -431,8 +431,8 @@
             <div
               class:hidden={!menuOpen.resolution}
               style="bottom:95%;right:0;"
-              class="absolute bg-white rounded border flex flex-col">
-              <div class="flex">
+              class="absolute ml-2 bg-white rounded border flex flex-col">
+              <div class="flex flex-wrap">
                 <div class="px-2 py-1 text-gray-600 flex-none">
                   {$_('menu.resolution')}
                 </div>
@@ -455,7 +455,7 @@
                   class="px-2 py-1 hover:bg-teal-300 flex-none"
                   class:bg-teal-300={resolution === null}>600x400</button>
               </div>
-              <div class="flex">
+              <div class="flex flex-wrap">
                 <div class="px-2 py-1 text-gray-600 flex-none">
                   {$_('menu.language')}
                 </div>
