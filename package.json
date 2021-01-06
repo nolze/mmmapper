@@ -1,6 +1,10 @@
 {
   "name": "mmmapper",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nolze/mmmapper.git"
+  },
   "scripts": {
     "dev": "svite",
     "dev:workers": "rollup -c rollup.workers.config.js -w",
